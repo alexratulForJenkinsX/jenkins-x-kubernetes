@@ -24,6 +24,9 @@ pipelines:
     build:
       preSteps:
       - sh: echo “Running unit tests!”
+
+      - sh: pylint */*.py
+        name: "Running Static Analysis" 
       steps:
       - sh: export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml
         name: container-build
